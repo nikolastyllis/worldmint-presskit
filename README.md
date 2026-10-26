@@ -18,3 +18,5 @@ Built with [presskit.html](https://github.com/pixelnest/presskit.html) and deplo
 ```
 
 Each shot in the JSON has a camera `position`, `target` and optional `fov`, plus `penguins` (position, face, color, pattern, blood, snow, limp) and `props` (scene, position). See the JSON files in `tools/`.
+
+`tools/capture_logo.gd` renders the penguin headshot behind the Penal Penguins logo on a transparent background, the same way: `res://tools/capture_logo.tscn -- <output png>`. The "PP" lettering was added on top afterwards in Times New Roman Bold.
