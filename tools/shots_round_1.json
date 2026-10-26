@@ -1,0 +1,29 @@
+[
+{"name":"aerial","position":[38,22,34],"target":[0,0,0],"fov":65},
+{"name":"hall","position":[-11.5,2.6,-7.5],"target":[-15,0.6,0.5],"frames":150,"penguins":[
+ {"position":[-15,0,-2.6],"face":[-11,0,-6],"color":"e6194b","pattern":"skulls","blood":0.8},
+ {"position":[-14.3,0,-4.2],"color":"3cb44b","pattern":"stars","blood":1.0,"limp":true},
+ {"position":[-17.5,0,1.5],"face":[-14.5,0,-3.5],"color":"4363d8","pattern":"stripes"},
+ {"position":[-12,0,2.5],"face":[-14.5,0,-3.5],"color":"ffe119","pattern":"hearts"}]},
+{"name":"tier","position":[-18,3.9,-9.5],"target":[-8,2.6,-9.0],"penguins":[
+ {"position":[-15.5,2.2,-9.4],"face":[-18,2.2,-9.5],"color":"f58231","pattern":"checker"},
+ {"position":[-13.2,2.2,-9.6],"face":[-18,2.2,-9.5],"color":"911eb4","pattern":"moons"},
+ {"position":[-11,0,-3],"face":[-18,4,-9.5],"color":"42d4f4","pattern":"zigzag"}]},
+{"name":"showers","position":[-21,1.6,-4.2],"target":[-24,1,-11],"penguins":[
+ {"position":[-23.4,0,-9],"face":[-21,0,-4.2],"color":"f032e6","pattern":"paisley","blood":0.9},
+ {"position":[-21.6,0,-7],"face":[-23.4,0,-9],"color":"469990","pattern":"dots"}]},
+{"name":"court","position":[14.5,1.8,6.5],"target":[8.5,1.6,-0.5],"penguins":[
+ {"position":[9.2,0,0.6],"face":[9,0,-3],"color":"e6194b","pattern":"lightning"},
+ {"position":[10.6,0,2.0],"face":[9.2,0,0.6],"color":"4363d8","pattern":"plain"},
+ {"position":[7.3,0,2.6],"face":[9.2,0,0.6],"color":"bfef45","pattern":"stars"}],
+ "props":[{"scene":"res://prefabs/basketball.tscn","position":[9.5,1.1,0.9]}]},
+{"name":"snow","position":[4,1.6,10],"target":[-2,1,4],"penguins":[
+ {"position":[-1,0,5],"face":[2,0,8],"color":"dcbeff","pattern":"spiral","snow":1.0},
+ {"position":[1.5,0,7.5],"face":[-1,0,5],"color":"9a6324","pattern":"crosses"},
+ {"position":[-3,0,7.5],"face":[1.5,0,7.5],"color":"fabed4","pattern":"triangles","snow":0.6}],
+ "props":[{"scene":"res://prefabs/snow_ball.tscn","position":[0.5,1.4,6.8]}]},
+{"name":"kitchen","position":[-11,1.6,3.5],"target":[-14.5,1,10],"penguins":[
+ {"position":[-12.2,0,8.6],"face":[-12.2,0,10],"color":"000075","pattern":"cards"},
+ {"position":[-13.6,0,8.0],"face":[-12.2,0,8.6],"color":"ffe119","pattern":"diamonds"},
+ {"position":[-15.0,0,7.4],"face":[-13.6,0,8.0],"color":"800000","pattern":"clubs"}]}
+]

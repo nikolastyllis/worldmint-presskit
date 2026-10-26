@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<company>
+  <title>WorldMint Games</title>
+  <based-in>Adelaide, Australia</based-in>
+  <website>https://worldmintgames.com</website>
+
+  <socials>
+    <social>
+      <name>YouTube</name>
+      <link>https://www.youtube.com/@worldmintgames</link>
+    </social>
+    <social>
+      <name>Discord</name>
+      <link>https://discord.com/invite/Q4ZtWqPcyg</link>
+    </social>
+    <social>
+      <name>Instagram</name>
+      <link>https://www.instagram.com/worldmintgames/</link>
+    </social>
+    <social>
+      <name>TikTok</name>
+      <link>https://www.tiktok.com/@worldmintgames</link>
+    </social>
+  </socials>
+
+  <press-contact>press@worldmintgames.com</press-contact>
+
+  <description>
+    WorldMint Games is an independent game studio from Adelaide, Australia, making multiplayer games about lying to your friends, getting caught, and laughing about it afterwards.
+  </description>
+
+  <history>
+    WorldMint Games was founded by Nikolas, who designs and develops its games. Its first game, Blood on the Block, is a social deduction game set in a snowbound mountain prison, coming to Steam in 2027.
+  </history>
+
+  <credits>
+    <credit>
+      <person>Nikolas</person>
+      <role>Founder, Developer, WorldMint Games</role>
+    </credit>
+  </credits>
+
+  <contacts>
+    <contact>
+      <name>Press</name>
+      <mail>press@worldmintgames.com</mail>
+    </contact>
+    <contact>
+      <name>Business</name>
+      <mail>business@worldmintgames.com</mail>
+    </contact>
+    <contact>
+      <name>Support</name>
+      <mail>support@worldmintgames.com</mail>
+    </contact>
+    <contact>
+      <name>General</name>
+      <mail>info@worldmintgames.com</mail>
+    </contact>
+    <contact>
+      <name>Discord</name>
+      <link>https://discord.com/invite/Q4ZtWqPcyg</link>
+    </contact>
+    <contact>
+      <name>YouTube</name>
+      <link>https://www.youtube.com/@worldmintgames</link>
+    </contact>
+    <contact>
+      <name>Instagram</name>
+      <link>https://www.instagram.com/worldmintgames/</link>
+    </contact>
+    <contact>
+      <name>TikTok</name>
+      <link>https://www.tiktok.com/@worldmintgames</link>
+    </contact>
+  </contacts>
+</company>
