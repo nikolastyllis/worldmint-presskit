@@ -28,7 +28,9 @@ func _ready() -> void:
 	add_child(penguin)
 	penguin.set_color(Color("e6194b"))
 	penguin.set_pattern("skulls")
-	penguin.set_blood_amount(0.6)
+	penguin.set_blood_amount(1.0)
+	# Far more than the game ever shows, so the logo reads as bloody even when small.
+	penguin.blood_material.set_shader_parameter(&"coverage", 0.55)
 
 	for frame in SETTLE_FRAMES:
 		await get_tree().process_frame
