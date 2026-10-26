@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <game>
-  <title>Blood on the Block</title>
-  <website>https://worldmintgames.com/blood-on-the-block/</website>
+  <title>Penal Penguins</title>
+  <website>https://worldmintgames.com/penal-penguins/</website>
 
   <release-dates>
     <release-date>Coming 2027</release-date>
@@ -21,11 +21,11 @@
   </prices>
 
   <description>
-    Blood on the Block is a multiplayer social deduction game for 4 to 15 players, set in a prison on a snowy mountain. Every inmate is a penguin, and a few of them are hitmen. Civilians work together on tasks to fill the Prison Break bar and escape. The hitmen blend in, kill when nobody is looking, and win once they equal or outnumber the civilians left alive. Everyone talks over proximity voice chat, so you can hear the lies, and the screams, from down the hall.
+    Penal Penguins is a multiplayer social deduction game for 4 to 15 players, set in a prison on a snowy mountain. Every inmate is a penguin, and a few of them are hitmen. Civilians work together on tasks to fill the Prison Break bar and escape. The hitmen blend in, kill when nobody is looking, and win once they equal or outnumber the civilians left alive. Everyone talks over proximity voice chat, so you can hear the lies, and the screams, from down the hall.
   </description>
 
   <history>
-    Blood on the Block is the first game from WorldMint Games, an independent studio in Adelaide, Australia. It is designed and developed by founder Nikolas in the Godot engine, with Steam peer-to-peer multiplayer.
+    Penal Penguins is the first game from WorldMint Games, an independent studio in Adelaide, Australia. It is designed and developed by founder Nikolas in the Godot engine, with Steam peer-to-peer multiplayer.
   </history>
 
   <features>

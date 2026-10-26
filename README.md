@@ -3,7 +3,7 @@
 Built with [presskit.html](https://github.com/pixelnest/presskit.html) and deployed to https://worldmintgames.com by GitHub Pages on every push to `main`.
 
 - `data/data.xml`: the company page. `data/images/` holds its header, logo and favicon.
-- `data/blood-on-the-block/data.xml`: the game page. Every image in `data/blood-on-the-block/images/` shows in its gallery, except `header.*`, `logo*` and `favicon.ico`.
+- `data/penal-penguins/data.xml`: the game page. Every image in `data/penal-penguins/images/` shows in its gallery, except `header.*`, `logo*` and `favicon.ico`.
 - `npm run watch` serves a live preview at http://localhost:8080.
 
 ## Screenshots
