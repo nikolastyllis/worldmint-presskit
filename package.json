@@ -2,8 +2,8 @@
   "name": "worldmint-presskit",
   "version": "1.0.0",
   "scripts": {
-    "build": "presskit build -D -L -C dark data",
-    "watch": "presskit build -L -C dark -w data"
+    "build": "presskit build -D -L -C theme/dark.css data",
+    "watch": "presskit build -L -C theme/dark.css -w data"
   },
   "description": "WorldMint Games press kit, built with presskit.html",
   "dependencies": {

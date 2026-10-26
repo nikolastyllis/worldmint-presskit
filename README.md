@@ -4,6 +4,7 @@ Built with [presskit.html](https://github.com/pixelnest/presskit.html) and deplo
 
 - `data/data.xml`: the company page. `data/images/` holds its header, logo and favicon.
 - `data/penal-penguins/data.xml`: the game page. Every image in `data/penal-penguins/images/` shows in its gallery, except `header.*`, `logo*` and `favicon.ico`.
+- `theme/dark.css` is presskit's dark theme with every font set to Times New Roman.
 - `npm run watch` serves a live preview at http://localhost:8080.
 
 ## Screenshots
