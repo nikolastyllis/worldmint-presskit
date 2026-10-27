@@ -26,8 +26,8 @@ body {
 \* ---------------------------------------------------------- */
 
 html {
-  color: #cccccc;
-  background: #1a1a2e;
+  color: #ffffff;
+  background: #000000;
 
   font: 62.5%/1.6 "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
@@ -38,7 +38,7 @@ body {
 
 h1,
 h2 {
-  color: #e0e0e0;
+  color: #e8631c;
 
   font-family: "Times New Roman", Times, serif;
   font-weight: normal;
@@ -46,12 +46,12 @@ h2 {
 
 ::-moz-selection {
   color: white;
-  background: #4a90d9;
+  background: #e8631c;
 }
 
 ::selection {
   color: white;
-  background: #4a90d9;
+  background: #e8631c;
 }
 
 /* ---------------------------------------------------------- *\
@@ -109,7 +109,7 @@ dl {
 }
 
 dt {
-  color: #e0e0e0;
+  color: #ffffff;
 
   font-weight: bold;
 }
@@ -177,13 +177,13 @@ body {
 
 a,
 a:visited {
-  color: #5dade2;
+  color: #e8631c;
 
   text-decoration: none;
 }
 
 a:hover {
-  color: #85c1e9;
+  color: #ff8033;
 
   text-decoration: underline;
 }
@@ -249,13 +249,13 @@ a:hover {
 
 .nav__item:hover {
   color: inherit;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(232, 99, 28, 0.15);
 
   text-decoration: none;
 }
 
 .nav__item:focus {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(232, 99, 28, 0.15);
   outline: none;
 }
 
@@ -309,16 +309,16 @@ a:hover {
   margin-bottom: 15px;
   padding-bottom: 15px;
 
-  border-bottom: 1px solid #333355;
+  border-bottom: 1px solid rgba(232, 99, 28, 0.4);
 }
 
 .block__notice {
   margin-bottom: 15px;
   padding: 10px;
 
-  color: #5dade2;
-  background: #16213e;
-  border: 1px solid rgba(93, 173, 226, 0.3);
+  color: #e8631c;
+  background: #000000;
+  border: 1px solid #e8631c;
   border-radius: 4px;
 }
 
@@ -468,10 +468,9 @@ a:hover {
 
   padding: 5px 10px;
 
-  color: #cccccc;
-  background: -webkit-linear-gradient(top, #2a2a4a, #1a1a2e);
-  background:         linear-gradient(to bottom, #2a2a4a, #1a1a2e);
-  border: 1px solid #444466;
+  color: #ffffff;
+  background: #000000;
+  border: 1px solid #e8631c;
   border-radius: 5px;
 }
 
@@ -481,14 +480,13 @@ a:hover {
 }
 
 .button:focus {
-  border: 1px solid #4a90d9;
+  border: 1px solid #ff8033;
   outline: none;
 }
 
 .button:active {
   color: white;
-  background: -webkit-linear-gradient(top, #4a90d9, #357abd);
-  background:         linear-gradient(to bottom, #4a90d9, #357abd);
+  background: #e8631c;
 }
 
 /* ---------------------------------------------------------- *\
@@ -543,12 +541,12 @@ a:hover {
 \* ---------------------------------------------------------- */
 
 .page-footer {
-  color: #888888;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .page-footer a,
 .page-footer a:visited {
-  color: #5dade2;
+  color: #e8631c;
 }
 
 /* WorldMint: Times New Roman everywhere, including text the theme leaves to the browser default. */

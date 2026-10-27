@@ -16,6 +16,8 @@ FONT_PATH = "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf"
 FONT_SIZE = 1500
 TEXT = "PP"
 TEXT_TOP = 880
+# The orange of the game's interface (themes/game_theme.tres).
+LETTER_COLOR = (232, 99, 28, 255)
 OUTLINE_WIDTH = 48
 OUTLINE_COLOR = (15, 15, 25, 255)
 WIRE_COLOR = (0, 0, 0, 255)
@@ -96,9 +98,9 @@ def main():
     lettering = Image.new("RGBA", big_size, (0, 0, 0, 0))
     lettering_draw = ImageDraw.Draw(lettering)
     position = text_position(lettering_draw, font)
-    lettering_draw.text(position, TEXT, font=font, fill=(255, 255, 255, 255), stroke_width=OUTLINE_WIDTH * SUPERSAMPLE, stroke_fill=OUTLINE_COLOR)
+    lettering_draw.text(position, TEXT, font=font, fill=LETTER_COLOR, stroke_width=OUTLINE_WIDTH * SUPERSAMPLE, stroke_fill=OUTLINE_COLOR)
 
-    # The wire only shows over the white inside of the letters, not their outline.
+    # The wire only shows over the inside of the letters, not their outline.
     inside = Image.new("L", big_size, 0)
     ImageDraw.Draw(inside).text(position, TEXT, font=font, fill=255)
     wire = Image.new("RGBA", big_size, (0, 0, 0, 0))

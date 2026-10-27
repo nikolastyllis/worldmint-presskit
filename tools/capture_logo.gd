@@ -37,7 +37,8 @@ func _ready() -> void:
 
 	var penguin: Penguin = PENGUIN_SCENE.instantiate()
 	stage.add_child(penguin)
-	penguin.set_color(Color("e6194b"))
+	# The orange of the game's interface (themes/game_theme.tres).
+	penguin.set_color(Color(0.91, 0.39, 0.11))
 	penguin.set_pattern("plain")
 	# Both eyes have to be open and looking out over the lettering.
 	penguin.blink_timer.stop()
