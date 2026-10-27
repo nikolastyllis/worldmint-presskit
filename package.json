@@ -2,7 +2,7 @@
   "name": "worldmint-presskit",
   "version": "1.0.0",
   "scripts": {
-    "build": "presskit build -D -L -C theme/worldmint.css data && node tools/apply_page_themes.js",
+    "build": "presskit build -D -L -C theme/worldmint.css data && node tools/apply_page_themes.js && node tools/add_icons.js",
     "watch": "presskit build -L -C theme/worldmint.css -w data"
   },
   "description": "WorldMint Games press kit, built with presskit.html",
