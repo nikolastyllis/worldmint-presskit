@@ -22,11 +22,9 @@ WIRE_COLOR = (0, 0, 0, 255)
 # Each strand runs across the letters at this height, rising or falling by this many pixels from left to right.
 STRANDS = [(1410, 0)]
 # Left, top and size of the square taken from the headshots, placing the eyes just above the letters.
-HEADSHOT_CROP = (695, 183, 1558)
+HEADSHOT_CROP = (139, 193, 1642)
 # Boxes around each eye in the headshots, where the clean eyes are pasted.
-EYE_BOXES = [(1090, 730, 1270, 880), (1680, 700, 1860, 830)]
-# How far below the top of the letters the penguin is cut off, so it looks to be hiding behind them.
-TUCK_DEPTH = 80
+EYE_BOXES = [(555, 769, 745, 927), (1177, 738, 1367, 875)]
 LOGO_PATH = "data/penal-penguins/images/logo.png"
 FAVICON_PATHS = ["data/penal-penguins/images/favicon.ico"]
 
@@ -42,11 +40,7 @@ def peeping_penguin(bloody_path, clean_path):
     headshot.paste(clean, (0, 0), eyes)
 
     left, top, crop_size = HEADSHOT_CROP
-    penguin = headshot.crop((left, top, left + crop_size, top + crop_size)).resize((SIZE, SIZE), Image.LANCZOS)
-    hidden = Image.new("L", (SIZE, SIZE), 255)
-    ImageDraw.Draw(hidden).rectangle((0, TEXT_TOP + TUCK_DEPTH, SIZE, SIZE), fill=0)
-    penguin.putalpha(ImageChops.multiply(penguin.getchannel("A"), hidden))
-    return penguin
+    return headshot.crop((left, top, left + crop_size, top + crop_size)).resize((SIZE, SIZE), Image.LANCZOS)
 
 
 def text_position(draw, font):
