@@ -7,6 +7,7 @@ Built with [presskit.html](https://github.com/pixelnest/presskit.html) and deplo
 - `theme/worldmint.css` is the company page theme: presskit's dark theme in Times New Roman, in black, white and the greens of the WorldMint logo.
 - `theme/penal-penguins.css` is the Penal Penguins page theme, in black, white and the game's interface orange (#e8631c). presskit gives every page the same theme, so `npm run build` then runs `tools/apply_page_themes.js`, which gives each game page with a matching `theme/<game folder>.css` its own.
 - `tools/add_icons.js`, also run by `npm run build`, adds each page's PNG and Apple touch icons from `tools/assets/icons/`, and a `favicon.ico` at the root of the site for browsers that look there. Remake those icons if a logo changes.
+- `tools/remove_footer.js`, also run by `npm run build`, removes presskit's credits footer from each page.
 - `npm run watch` serves a live preview at http://localhost:8080. It shows every page in the company theme; use `npm run build` to see the game page themes.
 
 ## Screenshots
