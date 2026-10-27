@@ -41,7 +41,7 @@ BANNER_FONT_SIZE = 600
 BANNER_MARGIN = 60
 BANNER_PATH = "data/penal-penguins/images/logo-banner.png"
 
-HEADER_SOURCE_PATH = "data/penal-penguins/images/01-prison-aerial.png"
+HEADER_SOURCE_PATH = "tools/assets/screenshots/01-prison-aerial.png"
 HEADER_SIZE = (1920, 600)
 HEADER_ZOOM = 1.2
 # The banner logo's width as a share of the header's.

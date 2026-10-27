@@ -23,7 +23,7 @@ LEAF_HEIGHT = 1.45
 MARGIN = 40
 BANNER_PATH = "data/images/logo-banner.png"
 
-HEADER_SOURCE_PATH = "data/penal-penguins/images/04-snowball-fight.png"
+HEADER_SOURCE_PATH = "tools/assets/screenshots/04-snowball-fight.png"
 HEADER_SIZE = (1920, 600)
 HEADER_ZOOM = 1.2
 # The banner logo's height as a share of the header's.

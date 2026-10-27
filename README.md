@@ -3,7 +3,7 @@
 Built with [presskit.html](https://github.com/pixelnest/presskit.html) and deployed to https://worldmintgames.com by GitHub Pages on every push to `main`.
 
 - `data/data.xml`: the company page. `data/images/` holds its header, logo and favicon.
-- `data/penal-penguins/data.xml`: the game page. Every image in `data/penal-penguins/images/` shows in its gallery, except `header.*`, `logo*` and `favicon.ico`.
+- `data/penal-penguins/data.xml`: the game page. Every image in `data/penal-penguins/images/` shows in its gallery, except `header.*`, `logo*` and `favicon.ico`. The gallery is a placeholder for now; the staged screenshots rendered from the game are kept in `tools/assets/screenshots/`, and the headers are made from two of them.
 - `theme/worldmint.css` is the company page theme: presskit's dark theme in Times New Roman, in black, white and the greens of the WorldMint logo.
 - `theme/penal-penguins.css` is the Penal Penguins page theme, in black, white and the game's interface orange (#e8631c). presskit gives every page the same theme, so `npm run build` then runs `tools/apply_page_themes.js`, which gives each game page with a matching `theme/<game folder>.css` its own.
 - `npm run watch` serves a live preview at http://localhost:8080. It shows every page in the company theme; use `npm run build` to see the game page themes.
