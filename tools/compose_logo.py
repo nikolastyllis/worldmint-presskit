@@ -2,6 +2,7 @@
 
 - The logo: "PP" with a penguin peeping over it, from two headshots rendered by capture_logo.gd, one
   covered in blood and one clean, whose eyes are pasted over the bloody one so they still show.
+- The letters logo: the "PP" alone on a square, also used for the game page's favicon and icons.
 - The banner logo: the full name in the same lettering, without the penguin.
 - The header: the aerial screenshot, zoomed in, with the banner logo over it.
 
@@ -34,7 +35,15 @@ HEADSHOT_CROP = (139, 193, 1642)
 # Boxes around each eye in the headshots, where the clean eyes are pasted.
 EYE_BOXES = [(555, 769, 745, 927), (1177, 738, 1367, 875)]
 LOGO_PATH = "data/penal-penguins/images/logo.png"
-FAVICON_PATHS = ["data/penal-penguins/images/favicon.ico"]
+
+LETTERS_MARGIN = 80
+LETTERS_PATH = "data/penal-penguins/images/logo-pp.png"
+FAVICON_PATH = "data/penal-penguins/images/favicon.ico"
+ICON_PATH = "tools/assets/icons/penal-penguins.png"
+ICON_SIZE = 192
+# Apple touch icons can't be transparent, so this one sits on the page's black.
+APPLE_TOUCH_ICON_PATH = "tools/assets/icons/penal-penguins-apple-touch.png"
+APPLE_TOUCH_ICON_SIZE = 180
 
 BANNER_TEXT = "PENAL PENGUINS"
 BANNER_FONT_SIZE = 600
@@ -116,13 +125,26 @@ def lettering(text, font_size, size, text_top):
     return image.resize(size, Image.LANCZOS)
 
 
-def banner_logo():
-    font = ImageFont.truetype(FONT_PATH, BANNER_FONT_SIZE)
-    box = ImageDraw.Draw(Image.new("L", (1, 1))).textbbox((0, 0), BANNER_TEXT, font=font)
-    outline = round(OUTLINE_WIDTH * BANNER_FONT_SIZE / DESIGN_FONT_SIZE)
-    padding = BANNER_MARGIN + outline
+def fitted_lettering(text, font_size, margin):
+    """The lettering on an image just big enough to hold it, with the margin all round."""
+    font = ImageFont.truetype(FONT_PATH, font_size)
+    box = ImageDraw.Draw(Image.new("L", (1, 1))).textbbox((0, 0), text, font=font)
+    outline = round(OUTLINE_WIDTH * font_size / DESIGN_FONT_SIZE)
+    padding = margin + outline
     size = (box[2] - box[0] + padding * 2, box[3] - box[1] + padding * 2)
-    return lettering(BANNER_TEXT, BANNER_FONT_SIZE, size, padding)
+    return lettering(text, font_size, size, padding)
+
+
+def letters_logo():
+    letters = fitted_lettering(LOGO_TEXT, DESIGN_FONT_SIZE, LETTERS_MARGIN)
+    side = max(letters.size)
+    square = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    square.alpha_composite(letters, ((side - letters.width) // 2, (side - letters.height) // 2))
+    return square.resize((LOGO_SIZE, LOGO_SIZE), Image.LANCZOS)
+
+
+def banner_logo():
+    return fitted_lettering(BANNER_TEXT, BANNER_FONT_SIZE, BANNER_MARGIN)
 
 
 def header(banner):
@@ -143,8 +165,14 @@ def main():
     logo = peeping_penguin(sys.argv[1], sys.argv[2])
     logo.alpha_composite(lettering(LOGO_TEXT, DESIGN_FONT_SIZE, (LOGO_SIZE, LOGO_SIZE), LOGO_TEXT_TOP))
     logo.save(LOGO_PATH)
-    for path in FAVICON_PATHS:
-        logo.save(path, sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
+
+    letters = letters_logo()
+    letters.save(LETTERS_PATH)
+    letters.save(FAVICON_PATH, sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
+    letters.resize((ICON_SIZE, ICON_SIZE), Image.LANCZOS).save(ICON_PATH)
+    apple_touch_icon = Image.new("RGBA", letters.size, (0, 0, 0, 255))
+    apple_touch_icon.alpha_composite(letters)
+    apple_touch_icon.convert("RGB").resize((APPLE_TOUCH_ICON_SIZE, APPLE_TOUCH_ICON_SIZE), Image.LANCZOS).save(APPLE_TOUCH_ICON_PATH)
 
     banner = banner_logo()
     banner.save(BANNER_PATH)
