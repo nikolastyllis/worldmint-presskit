@@ -1,4 +1,4 @@
-"""Builds the WorldMint Games banner logo, the mint leaves beside the full name, and the company page
+"""Builds the WorldMint Games banner logo, the full name over the mint leaves, and the company page
 header, the snowball fight screenshot with the banner over it. The leaves are tools/assets/mint.svg,
 rendered to tools/assets/mint.png.
 
@@ -10,49 +10,62 @@ from PIL import Image, ImageDraw, ImageFont
 MINT_PATH = "tools/assets/mint.png"
 FONT_PATH = "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf"
 FONT_SIZE = 600
-# The white of the "WM" on the logo, then the bright green of the leaves.
-WORDS = [("WorldMint ", (255, 255, 255, 255)), ("Games", (145, 189, 41, 255))]
-# The leaves' height as a share of the capital letters' height.
-LEAF_HEIGHT = 1.7
-LEAF_GAP = 60
+NAME = "WorldMint"
+# Set beneath the name, sized so it lines up with the name at both ends.
+SUBTITLE = "GAMES"
+LINE_GAP = 70
+TEXT_COLOR = (255, 255, 255, 255)
+# Keeps the white letters readable over the leaves and the screenshot.
+OUTLINE_WIDTH = 14
+OUTLINE_COLOR = (15, 15, 25, 255)
+# The leaves sit behind the text, this much taller than it.
+LEAF_HEIGHT = 1.45
 MARGIN = 40
 BANNER_PATH = "data/images/logo-banner.png"
 
 HEADER_SOURCE_PATH = "data/penal-penguins/images/04-snowball-fight.png"
 HEADER_SIZE = (1920, 600)
 HEADER_ZOOM = 1.2
-# The banner logo's width as a share of the header's.
-HEADER_BANNER_WIDTH = 0.7
-# A dark band behind the banner, so the white lettering stands out from the snow.
-HEADER_SHADE = (0, 0, 0, 110)
+# The banner logo's height as a share of the header's.
+HEADER_BANNER_HEIGHT = 0.85
 HEADER_PATH = "data/images/header.png"
 
 
-def banner_logo():
-    font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
-    measure = ImageDraw.Draw(Image.new("L", (1, 1)))
-    text = "".join(word for word, _ in WORDS)
-    text_box = measure.textbbox((0, 0), text, font=font)
-    capital_height = measure.textbbox((0, 0), "W", font=font)
-    capital_height = capital_height[3] - capital_height[1]
+def ink_box(text, font):
+    return ImageDraw.Draw(Image.new("L", (1, 1))).textbbox((0, 0), text, font=font)
 
+
+def banner_logo():
+    name_font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
+    name_box = ink_box(NAME, name_font)
+    name_width = name_box[2] - name_box[0]
+    # Text width grows almost exactly with font size, so one correction lines it up.
+    subtitle_size = FONT_SIZE
+    for attempt in range(2):
+        subtitle_box = ink_box(SUBTITLE, ImageFont.truetype(FONT_PATH, subtitle_size))
+        subtitle_size = round(subtitle_size * name_width / (subtitle_box[2] - subtitle_box[0]))
+    subtitle_font = ImageFont.truetype(FONT_PATH, subtitle_size)
+    subtitle_box = ink_box(SUBTITLE, subtitle_font)
+
+    name_height = name_box[3] - name_box[1]
+    text_height = name_height + LINE_GAP + subtitle_box[3] - subtitle_box[1]
     leaves = Image.open(MINT_PATH).convert("RGBA")
     leaves = leaves.crop(leaves.getbbox())
-    leaf_height = round(capital_height * LEAF_HEIGHT)
+    leaf_height = round(text_height * LEAF_HEIGHT)
     leaves = leaves.resize((round(leaves.width * leaf_height / leaves.height), leaf_height), Image.LANCZOS)
 
-    text_width = text_box[2] - text_box[0]
-    size = (MARGIN * 2 + leaves.width + LEAF_GAP + text_width, MARGIN * 2 + leaf_height)
+    padding = MARGIN + OUTLINE_WIDTH
+    size = (max(name_width, leaves.width) + padding * 2, leaf_height + padding * 2)
     banner = Image.new("RGBA", size, (0, 0, 0, 0))
-    banner.alpha_composite(leaves, (MARGIN, MARGIN))
+    banner.alpha_composite(leaves, ((size[0] - leaves.width) // 2, padding))
 
     draw = ImageDraw.Draw(banner)
-    x = MARGIN + leaves.width + LEAF_GAP - text_box[0]
-    # The capitals are centred on the leaves.
-    y = MARGIN + (leaf_height - capital_height) // 2 - measure.textbbox((0, 0), "W", font=font)[1]
-    for word, color in WORDS:
-        draw.text((x, y), word, font=font, fill=color)
-        x += draw.textlength(word, font=font)
+    left = (size[0] - name_width) // 2
+    top = (size[1] - text_height) // 2
+    draw.text((left - name_box[0], top - name_box[1]), NAME, font=name_font, fill=TEXT_COLOR,
+              stroke_width=OUTLINE_WIDTH, stroke_fill=OUTLINE_COLOR)
+    draw.text((left - subtitle_box[0], top + name_height + LINE_GAP - subtitle_box[1]), SUBTITLE, font=subtitle_font,
+              fill=TEXT_COLOR, stroke_width=OUTLINE_WIDTH, stroke_fill=OUTLINE_COLOR)
     return banner
 
 
@@ -64,13 +77,9 @@ def header(banner):
     top = (source.height - height) // 2
     image = source.crop((left, top, left + width, top + height)).resize(HEADER_SIZE, Image.LANCZOS)
 
-    banner_width = round(HEADER_SIZE[0] * HEADER_BANNER_WIDTH)
-    banner = banner.resize((banner_width, round(banner.height * banner_width / banner.width)), Image.LANCZOS)
-    position = ((HEADER_SIZE[0] - banner.width) // 2, (HEADER_SIZE[1] - banner.height) // 2)
-    shade = Image.new("RGBA", HEADER_SIZE, (0, 0, 0, 0))
-    ImageDraw.Draw(shade).rectangle((0, position[1], HEADER_SIZE[0], position[1] + banner.height), fill=HEADER_SHADE)
-    image.alpha_composite(shade)
-    image.alpha_composite(banner, position)
+    banner_height = round(HEADER_SIZE[1] * HEADER_BANNER_HEIGHT)
+    banner = banner.resize((round(banner.width * banner_height / banner.height), banner_height), Image.LANCZOS)
+    image.alpha_composite(banner, ((HEADER_SIZE[0] - banner.width) // 2, (HEADER_SIZE[1] - banner.height) // 2))
     return image.convert("RGB")
 
 
