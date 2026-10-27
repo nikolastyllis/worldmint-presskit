@@ -1,12 +1,13 @@
-"""Builds the Penal Penguins logo and favicons from the headshot rendered by capture_logo.gd.
+"""Builds the Penal Penguins logo and its favicon from two headshots rendered by capture_logo.gd: one
+covered in blood and one clean, whose eyes are pasted over the bloody one so they still show.
 
-Usage: python3 tools/compose_logo.py <headshot.png>
+Usage: python3 tools/compose_logo.py <bloody headshot.png> <clean headshot.png>
 """
 
 import math
 import sys
 
-from PIL import Image, ImageChops, ImageDraw, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 SIZE = 2000
 # Drawn this many times larger and scaled down, so the thin wire is smooth.
@@ -14,27 +15,38 @@ SUPERSAMPLE = 2
 FONT_PATH = "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf"
 FONT_SIZE = 1500
 TEXT = "PP"
-TEXT_TOP = 500
+TEXT_TOP = 880
 OUTLINE_WIDTH = 48
 OUTLINE_COLOR = (15, 15, 25, 255)
 WIRE_COLOR = (0, 0, 0, 255)
 # Each strand runs across the letters at this height, rising or falling by this many pixels from left to right.
-STRANDS = [(1000, 0)]
+STRANDS = [(1410, 0)]
+# Left, top and size of the square taken from the headshots, placing the eyes just above the letters.
+HEADSHOT_CROP = (695, 183, 1558)
+# Boxes around each eye in the headshots, where the clean eyes are pasted.
+EYE_BOXES = [(1090, 730, 1270, 880), (1680, 700, 1860, 830)]
+# How far below the top of the letters the penguin is cut off, so it looks to be hiding behind them.
+TUCK_DEPTH = 80
 LOGO_PATH = "data/penal-penguins/images/logo.png"
 FAVICON_PATHS = ["data/penal-penguins/images/favicon.ico"]
 
 
-def crop_headshot(path):
-    headshot = Image.open(path).convert("RGBA")
-    crop_size, centre_x, top = 1400, 1590, 300
-    logo = headshot.crop((centre_x - crop_size // 2, top, centre_x + crop_size // 2, top + crop_size))
-    logo = logo.resize((SIZE, SIZE), Image.LANCZOS)
-    # Fades the cut-off body into transparency.
-    fade = Image.new("L", (1, SIZE))
-    for y in range(SIZE):
-        fade.putpixel((0, y), 255 if y < 1400 else max(0, int(255 * (1 - (y - 1400) / 520))))
-    logo.putalpha(ImageChops.multiply(logo.getchannel("A"), fade.resize(logo.size)))
-    return logo
+def peeping_penguin(bloody_path, clean_path):
+    headshot = Image.open(bloody_path).convert("RGBA")
+    clean = Image.open(clean_path).convert("RGBA")
+    # The whites of the clean eyes, closed up so the pupils inside them are included.
+    eyes = Image.new("L", headshot.size, 0)
+    for box in EYE_BOXES:
+        whites = clean.crop(box).convert("L").point(lambda value: 255 if value > 140 else 0)
+        eyes.paste(whites.filter(ImageFilter.MaxFilter(15)).filter(ImageFilter.MinFilter(15)), box[:2])
+    headshot.paste(clean, (0, 0), eyes)
+
+    left, top, crop_size = HEADSHOT_CROP
+    penguin = headshot.crop((left, top, left + crop_size, top + crop_size)).resize((SIZE, SIZE), Image.LANCZOS)
+    hidden = Image.new("L", (SIZE, SIZE), 255)
+    ImageDraw.Draw(hidden).rectangle((0, TEXT_TOP + TUCK_DEPTH, SIZE, SIZE), fill=0)
+    penguin.putalpha(ImageChops.multiply(penguin.getchannel("A"), hidden))
+    return penguin
 
 
 def text_position(draw, font):
@@ -83,7 +95,7 @@ def draw_razor_wire(draw, start_y, tilt):
 
 
 def main():
-    logo = crop_headshot(sys.argv[1])
+    logo = peeping_penguin(sys.argv[1], sys.argv[2])
     big_size = (SIZE * SUPERSAMPLE, SIZE * SUPERSAMPLE)
     font = ImageFont.truetype(FONT_PATH, FONT_SIZE * SUPERSAMPLE)
 

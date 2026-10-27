@@ -1,13 +1,15 @@
 extends Node
 
 # Temporary tool for the press kit logo. Renders a lit penguin headshot on a transparent background
-# and saves it to the path passed after "--".
+# and saves it to the path passed after "--". Passing "clean" after the path leaves out the blood.
 
 const PENGUIN_SCENE: PackedScene = preload("res://prefabs/penguin.tscn")
 const SETTLE_FRAMES: int = 30
 
 func _ready() -> void:
-	var output_path: String = OS.get_cmdline_user_args()[0]
+	var arguments: PackedStringArray = OS.get_cmdline_user_args()
+	var output_path: String = arguments[0]
+	var clean: bool = arguments.size() > 1 and arguments[1] == "clean"
 	get_node(^"/root/FpsCounter").queue_free()
 	get_viewport().transparent_bg = true
 
@@ -28,9 +30,12 @@ func _ready() -> void:
 	add_child(penguin)
 	penguin.set_color(Color("e6194b"))
 	penguin.set_pattern("skulls")
-	penguin.set_blood_amount(1.0)
-	# Far more than the game ever shows, so the logo reads as bloody even when small.
-	penguin.blood_material.set_shader_parameter(&"coverage", 0.55)
+	# Both eyes have to be open and looking out over the lettering.
+	penguin.blink_timer.stop()
+	if not clean:
+		penguin.set_blood_amount(1.0)
+		# Far more than the game ever shows, so the logo reads as bloody even when small.
+		penguin.blood_material.set_shader_parameter(&"coverage", 0.55)
 
 	for frame in SETTLE_FRAMES:
 		await get_tree().process_frame
@@ -38,7 +43,7 @@ func _ready() -> void:
 	var camera: Camera3D = Camera3D.new()
 	camera.fov = 30.0
 	add_child(camera)
-	camera.global_position = head + Vector3(0.4, 0.12, 1.5)
+	camera.global_position = head + Vector3(0, 0.12, 1.5)
 	camera.look_at(head + Vector3(0, 0.02, 0))
 	camera.make_current()
 	for frame in SETTLE_FRAMES:
