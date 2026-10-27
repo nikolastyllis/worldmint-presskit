@@ -19,4 +19,4 @@ Built with [presskit.html](https://github.com/pixelnest/presskit.html) and deplo
 
 Each shot in the JSON has a camera `position`, `target` and optional `fov`, plus `penguins` (position, face, color, pattern, blood, snow, limp) and `props` (scene, position). See the JSON files in `tools/`.
 
-`tools/capture_logo.gd` renders the penguin headshot behind the Penal Penguins logo on a transparent background, the same way: `res://tools/capture_logo.tscn -- <output png>`. `tools/compose_logo.py <headshot png>` then crops it, adds the "PP" lettering in Times New Roman Bold with razor wire through it, and writes the logo and both favicons.
+`tools/capture_logo.gd` renders the penguin headshot behind the Penal Penguins logo on a transparent background, the same way: `res://tools/capture_logo.tscn -- <output png>`. `tools/compose_logo.py <headshot png>` then crops it, adds the "PP" lettering in Times New Roman Bold with razor wire through it, and writes the logo and the game page favicon.

@@ -21,7 +21,7 @@ WIRE_COLOR = (0, 0, 0, 255)
 # Each strand runs across the letters at this height, rising or falling by this many pixels from left to right.
 STRANDS = [(1000, 0)]
 LOGO_PATH = "data/penal-penguins/images/logo.png"
-FAVICON_PATHS = ["data/images/favicon.ico", "data/penal-penguins/images/favicon.ico"]
+FAVICON_PATHS = ["data/penal-penguins/images/favicon.ico"]
 
 
 def crop_headshot(path):
