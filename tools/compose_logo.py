@@ -43,7 +43,7 @@ BANNER_PATH = "data/penal-penguins/images/logo-banner.png"
 
 HEADER_SOURCE_PATH = "tools/assets/screenshots/01-prison-aerial.png"
 HEADER_SIZE = (1920, 600)
-HEADER_ZOOM = 1.2
+HEADER_ZOOM = 1.35
 # The banner logo's width as a share of the header's.
 HEADER_BANNER_WIDTH = 0.7
 HEADER_PATH = "data/penal-penguins/images/header.png"
