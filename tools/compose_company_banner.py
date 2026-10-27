@@ -1,15 +1,16 @@
-"""Builds the WorldMint Games banner logo, the leaf logo beside the full name, and the company page
-header, the snowball fight screenshot with the banner over it.
+"""Builds the WorldMint Games banner logo, the mint leaves beside the full name, and the company page
+header, the snowball fight screenshot with the banner over it. The leaves are tools/assets/mint.svg,
+rendered to tools/assets/mint.png.
 
 Usage: python3 tools/compose_company_banner.py
 """
 
 from PIL import Image, ImageDraw, ImageFont
 
-LOGO_PATH = "data/images/logo.png"
+MINT_PATH = "tools/assets/mint.png"
 FONT_PATH = "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf"
 FONT_SIZE = 600
-# The white of the "WM" on the leaves, then the bright green of the leaves.
+# The white of the "WM" on the logo, then the bright green of the leaves.
 WORDS = [("WorldMint ", (255, 255, 255, 255)), ("Games", (145, 189, 41, 255))]
 # The leaves' height as a share of the capital letters' height.
 LEAF_HEIGHT = 1.7
@@ -35,7 +36,7 @@ def banner_logo():
     capital_height = measure.textbbox((0, 0), "W", font=font)
     capital_height = capital_height[3] - capital_height[1]
 
-    leaves = Image.open(LOGO_PATH).convert("RGBA")
+    leaves = Image.open(MINT_PATH).convert("RGBA")
     leaves = leaves.crop(leaves.getbbox())
     leaf_height = round(capital_height * LEAF_HEIGHT)
     leaves = leaves.resize((round(leaves.width * leaf_height / leaves.height), leaf_height), Image.LANCZOS)
