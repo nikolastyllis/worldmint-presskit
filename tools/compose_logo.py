@@ -12,14 +12,14 @@ SIZE = 2000
 # Drawn this many times larger and scaled down, so the thin wire is smooth.
 SUPERSAMPLE = 2
 FONT_PATH = "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf"
-FONT_SIZE = 880
+FONT_SIZE = 1500
 TEXT = "PP"
-TEXT_TOP = 1020
-OUTLINE_WIDTH = 30
+TEXT_TOP = 500
+OUTLINE_WIDTH = 48
 OUTLINE_COLOR = (15, 15, 25, 255)
 WIRE_COLOR = (0, 0, 0, 255)
 # Each strand runs across the letters at this height, rising or falling by this many pixels from left to right.
-STRANDS = [(1330, 0)]
+STRANDS = [(1000, 0)]
 LOGO_PATH = "data/penal-penguins/images/logo.png"
 FAVICON_PATHS = ["data/images/favicon.ico", "data/penal-penguins/images/favicon.ico"]
 
@@ -47,12 +47,12 @@ def draw_razor_wire(draw, start_y, tilt):
     with sharp blades around each one."""
     scale = SUPERSAMPLE
     width = SIZE * scale
-    ring_width = 150 * scale
-    ring_height = 210 * scale
-    ring_spacing = 85 * scale
+    ring_width = 250 * scale
+    ring_height = 350 * scale
+    ring_spacing = 140 * scale
     blades_per_ring = 6
-    blade_length = 34 * scale
-    blade_width = 9 * scale
+    blade_length = 56 * scale
+    blade_width = 15 * scale
     steps = 72
     direction = math.atan2(tilt, SIZE)
     along = (math.cos(direction), math.sin(direction))
@@ -68,7 +68,7 @@ def draw_razor_wire(draw, start_y, tilt):
     while distance < width / math.cos(direction) + ring_width:
         centre = (along[0] * distance, start_y * scale + along[1] * distance)
         points = [ring_point(centre, 2 * math.pi * step / steps) for step in range(steps + 1)]
-        draw.line(points, fill=WIRE_COLOR, width=9 * scale, joint="curve")
+        draw.line(points, fill=WIRE_COLOR, width=15 * scale, joint="curve")
         for blade in range(blades_per_ring):
             angle = 2 * math.pi * (blade + 0.5) / blades_per_ring
             point = ring_point(centre, angle)
