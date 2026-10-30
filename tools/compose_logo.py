@@ -1,8 +1,8 @@
-"""Builds the Penal Penguins logos, favicon and page header.
+"""Builds the Penal Penguins logos and page header.
 
 - The logo: "PP" with a penguin peeping over it, from two headshots rendered by capture_logo.gd, one
   covered in blood and one clean, whose eyes are pasted over the bloody one so they still show.
-- The letters logo: the "PP" alone on a square, also used for the game page's favicon and icons.
+- The letters logo: the "PP" alone on a square.
 - The banner logo: the full name in the same lettering, without the penguin.
 - The header: the aerial screenshot, zoomed in, with the banner logo over it.
 
@@ -38,12 +38,6 @@ LOGO_PATH = "data/penal-penguins/images/logo.png"
 
 LETTERS_MARGIN = 80
 LETTERS_PATH = "data/penal-penguins/images/logo-pp.png"
-FAVICON_PATH = "data/penal-penguins/images/favicon.ico"
-ICON_PATH = "tools/assets/icons/penal-penguins.png"
-ICON_SIZE = 192
-# Apple touch icons can't be transparent, so this one sits on the page's black.
-APPLE_TOUCH_ICON_PATH = "tools/assets/icons/penal-penguins-apple-touch.png"
-APPLE_TOUCH_ICON_SIZE = 180
 
 BANNER_TEXT = "PENAL PENGUINS"
 BANNER_FONT_SIZE = 600
@@ -168,11 +162,6 @@ def main():
 
     letters = letters_logo()
     letters.save(LETTERS_PATH)
-    letters.save(FAVICON_PATH, sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
-    letters.resize((ICON_SIZE, ICON_SIZE), Image.LANCZOS).save(ICON_PATH)
-    apple_touch_icon = Image.new("RGBA", letters.size, (0, 0, 0, 255))
-    apple_touch_icon.alpha_composite(letters)
-    apple_touch_icon.convert("RGB").resize((APPLE_TOUCH_ICON_SIZE, APPLE_TOUCH_ICON_SIZE), Image.LANCZOS).save(APPLE_TOUCH_ICON_PATH)
 
     banner = banner_logo()
     banner.save(BANNER_PATH)
