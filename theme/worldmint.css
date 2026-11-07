@@ -203,6 +203,7 @@ a:hover {
 
 .page-header img {
   display: block;
+  border-radius: 8px;
 }
 
 /* ---------------------------------------------------------- *\
