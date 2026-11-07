@@ -3,7 +3,7 @@
 Built with [presskit.html](https://github.com/pixelnest/presskit.html) and deployed to https://worldmintgames.com by GitHub Pages on every push to `main`.
 
 - `data/data.xml`: the company page. `data/images/` holds its logo and favicon.
-- `data/penal-penguins/data.xml`: the game page. Every image in `data/penal-penguins/images/` shows in its gallery, except `header.*`, `logo*` and `favicon.ico`. The gallery is a placeholder for now; the staged screenshots rendered from the game are kept in `tools/assets/screenshots/`, and the game page header is made from one of them.
+- `data/penal-penguins/data.xml`: the game page. Every image in `data/penal-penguins/images/` shows in its gallery, except `header.*`, `logo*` and `favicon.ico`. The gallery holds preliminary screenshots taken from gameplay footage; the staged screenshots rendered from the game are kept in `tools/assets/screenshots/`, and the game page header is made from one of them.
 - `theme/worldmint.css` is the company page theme: presskit's dark theme in Times New Roman, in black, white and the greens of the WorldMint logo.
 - `theme/penal-penguins.css` is the Penal Penguins page theme, in black, white and the game's interface orange (#e8631c). presskit gives every page the same theme, so `npm run build` then runs `tools/apply_page_themes.js`, which gives each game page with a matching `theme/<game folder>.css` its own.
 - `tools/add_icons.js`, also run by `npm run build`, gives every page the Penal Penguins PNG and Apple touch icons from `tools/assets/icons/`, so search results show the same icon for each page, and a `favicon.ico` at the root of the site for browsers that look there. Every page's `images/favicon.ico` is the same "PP" icon, written by `tools/compose_logo.py`.
