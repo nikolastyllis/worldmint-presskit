@@ -415,9 +415,31 @@ a:hover {
  * Components - Logo.
 \* ---------------------------------------------------------- */
 
+.logo {
+  display: block;
+  max-width: 100%;
+}
+
+/* The banner logo runs across the top, with the square logos side by side beneath it. */
+.block:has(> a > .logo) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.block:has(> a > .logo) > :not(a) {
+  margin-bottom: 0;
+}
+
 @media (min-width: 800px) {
-  .logo {
-    max-width: 49%;
+  .block:has(> a > .logo) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .block:has(> a > .logo) > :not(a),
+  .block:has(> a > .logo) > a:has(> .logo[src*="banner"]) {
+    grid-column: 1 / -1;
   }
 }
 
