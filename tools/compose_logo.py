@@ -1,6 +1,6 @@
 """Builds the Penal Penguins logos and page header.
 
-- The logo: "PP" with a penguin peeping over it, from two headshots rendered by capture_logo.gd, one
+- The logo (kept off the site): "PP" with a penguin peeping over it, from two headshots rendered by capture_logo.gd, one
   covered in blood and one clean, whose eyes are pasted over the bloody one so they still show.
 - The letters logo: the "PP" alone on a square.
 - The banner logo: the full name in the same lettering, without the penguin.
@@ -36,7 +36,7 @@ LOGO_TEXT_TOP = 880
 HEADSHOT_CROP = (139, 193, 1642)
 # Boxes around each eye in the headshots, where the clean eyes are pasted.
 EYE_BOXES = [(555, 769, 745, 927), (1177, 738, 1367, 875)]
-LOGO_PATH = "data/penal-penguins/images/logo.png"
+LOGO_PATH = "tools/assets/logo-penguin.png"
 
 LETTERS_MARGIN = 80
 LETTERS_PATH = "data/penal-penguins/images/logo-pp.png"
